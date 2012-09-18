@@ -19,3 +19,7 @@ body {
     text-decoration: blink;
     background-color: white;
 }
+
+.cursor.blink {
+    visibility: hidden;
+}
