@@ -8,27 +8,34 @@ var Terminal = {
     },
     
     loadLocale: function(locale) {
-        $.getJSON(locale + '.json', function(json) {
-            this.locale = json;
-            this.welcome();
+        $.getJSON('js/locale/' + locale + '.json', function(data) {
+            Terminal.locale = data;
+            Terminal.welcome();
         });
     },
     
     welcome: function() {
-        // TODO clean screen
-        this.print(this.locale...);
+        $(this.container).empty();
+        
+        this.print(this.locale.welcome_msg);
+        this.print(this.locale.welcome_help_msg);
+        this.print('&nbsp;');
+        this.prompt();
     },
     
     print: function(text) {
         var out = $('<div>').html(text);
-        out.appendTo($(this.container));
+        $(this.container).append(out);
     },
     
     prompt: function() {
-    
+        var prompt = $('<div>').html('[luizdepra.com.br]$ ');
+        var cursor = $('<span>', {'class': 'cursor'}).html('&nbsp;').wrap($('blink'));
+        prompt.append(cursor);
+        $(this.container).append(prompt);
     }
 };
 
 $(document).ready(function() {
-  Terminal.init('#container', 'pt-br');
+  Terminal.init('#container', 'en-us');
 });
