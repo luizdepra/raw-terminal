@@ -15,11 +15,11 @@ body {
     color: green;
 }
 
-.cursor {
+#cursor {
     text-decoration: blink;
     background-color: white;
 }
 
-.cursor.blink {
+#cursor.blink {
     visibility: hidden;
 }

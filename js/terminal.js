@@ -8,6 +8,11 @@ var Terminal = {
     locale: null,
     
     commandLine: "",
+    commandHistory: [],
+    commandHistoryIndex: -1,
+    
+    cursorIndex: 0,
+    cursorSize: 1,
 
     init: function(container, locale) {
         this.container = container;
@@ -15,7 +20,7 @@ var Terminal = {
         this.loadLocale(locale);
         
         window.setInterval(function() {
-            $('.cursor').toggleClass('blink');
+            $('#cursor').toggleClass('blink');
         }, 500);
     },
     
@@ -34,30 +39,39 @@ var Terminal = {
         this.print('&nbsp;');
         this.prompt();
         
-        $(document).keypress(this.readKey);
+        $(document).on('keydown keypress', this.readKey);
     },
     
     readKey: function(event) {
-        if (!$('.cursor'))
+        if (!$('#cursor'))
             return;
         
         var code = event.keyCode || event.which;
         
-        if (code != 13) {
-            var character = String.fromCharCode(code);
-            Terminal.commandLine += character;
+        if (event.type == 'keydown') {
+            console.log('keydown: ' + event.keyCode + ' - ' + event.which);
             
-            $('.cursor').before(character);
+            if (code == 8)
+                event.preventDefault();
         }
-        else {
-            Terminal.execute(Terminal.commandLine);
+        else if (event.type == 'keypress') {
+            console.log('keypress: ' + event.keyCode + ' - ' + event.which);
+            
+            if (code != 13) {
+                var character = String.fromCharCode(code);
+                Terminal.commandLine += character;
+                Terminal.cursorIndex++;
+                
+                Terminal.updatePrompt();
+            }
+            else {
+                Terminal.execute(Terminal.commandLine);
+            }
         }
-        
     },
     
     execute: function(command) {
-        $('.cursor').remove();
-        this.commandLine = "";
+        $('#cursor').remove();
     
         var cmd = command.split(' ');
         
@@ -77,12 +91,43 @@ var Terminal = {
     },
     
     prompt: function() {
+        this.cursorSize = 1;
+        this.cursorIndex = 0;
+        this.commandLine = "";
+    
         var prompt = $('<div>').html('[luizdepra.com.br]$ ');
-        var cursor = $('<span>', {'class': 'cursor'}).html('&nbsp;').wrap($('blink'));
-        prompt.append(cursor);
+        var command = $('<span>', {id: 'command'});
+        var cursor = $('<span>', {id: 'cursor'}).html('&nbsp;').wrap($('blink'));
+        command.append(cursor);
+        prompt.append(command);
         $(this.container).append(prompt);
         
-        $(window).scrollTop($('.cursor').offset().top);
+        $(window).scrollTop($('#cursor').offset().top);
+    },
+    
+    updatePrompt: function() {
+        var prompt = $('#command').parent();
+        $('#command').remove();
+        
+        var command = $('<span>', {id: 'command'}).append(this.commandLine.substring(0, this.cursorIndex - 1)); // FIXME o primeiro caracter digitado n aparece
+        
+        var insideCursor;
+        if (this.cursorIndex == this.commandLine.length) {
+            insideCursor = '&nbsp;';
+        }
+        else {
+            insideCursor = this.commandLine.substring(this.cursorIndex, this.cursorIndex + this.cursorSize - 1);
+        }
+        
+        var cursor = $('<span>', {id: 'cursor'}).html(insideCursor);
+        command.append(cursor);
+ 
+        if (this.cursorIndex + this.cursorSize < this.commandLine.length) {
+            var postCursor = this.commandLine.substring(this.cursorIndex + this.cursorSize, this.commandLine.length - 1);
+            command.append(postCursor);
+        }
+ 
+        prompt.append(command);
     }
 };
 
