@@ -37,7 +37,7 @@ var Terminal = {
         this.print(this.locale.welcome_msg);
         this.print(this.locale.welcome_help_msg);
         this.print('&nbsp;');
-        this.prompt();
+        this.displayPrompt();
         
         $(document).on('keydown keypress', this.readKey);
     },
@@ -71,7 +71,9 @@ var Terminal = {
     },
     
     execute: function(command) {
-        $('#cursor').remove();
+        var parent = $('#command').parent();
+        $('#command').remove();
+        parent.append(command);
     
         var cmd = command.split(' ');
         
@@ -82,7 +84,7 @@ var Terminal = {
             this.print('terminal: '+command+': command not found');
         }
         
-        this.prompt();
+        this.displayPrompt();
     },
     
     print: function(text) {
@@ -90,7 +92,7 @@ var Terminal = {
         $(this.container).append(out);
     },
     
-    prompt: function() {
+    displayPrompt: function() {
         this.cursorSize = 1;
         this.cursorIndex = 0;
         this.commandLine = "";
@@ -109,21 +111,21 @@ var Terminal = {
         var prompt = $('#command').parent();
         $('#command').remove();
         
-        var command = $('<span>', {id: 'command'}).append(this.commandLine.substring(0, this.cursorIndex - 1)); // FIXME o primeiro caracter digitado n aparece
+        var command = $('<span>', {id: 'command'}).append(this.commandLine.substring(0, this.cursorIndex));
         
         var insideCursor;
         if (this.cursorIndex == this.commandLine.length) {
             insideCursor = '&nbsp;';
         }
         else {
-            insideCursor = this.commandLine.substring(this.cursorIndex, this.cursorIndex + this.cursorSize - 1);
+            insideCursor = this.commandLine.substring(this.cursorIndex, this.cursorIndex + this.cursorSize);
         }
         
         var cursor = $('<span>', {id: 'cursor'}).html(insideCursor);
         command.append(cursor);
  
         if (this.cursorIndex + this.cursorSize < this.commandLine.length) {
-            var postCursor = this.commandLine.substring(this.cursorIndex + this.cursorSize, this.commandLine.length - 1);
+            var postCursor = this.commandLine.substring(this.cursorIndex + this.cursorSize, this.commandLine.length);
             command.append(postCursor);
         }
  
