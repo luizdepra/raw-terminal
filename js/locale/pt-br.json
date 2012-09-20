@@ -1,4 +1,19 @@
 {
     "welcome_msg": "Ola! Bem-vindo a <a class=\"link\" href=\"http://luizdepra.com.br\">luizdepra.com.br</a>.",
-    "welcome_help_msg": "Digite 'help' para obter a lista de todos os comandos disponíveis."
+    "welcome_help_msg": "Digite 'help' para obter a lista de todos os comandos disponíveis.",
+    
+    "help_command": " ",
+    "help_description": " ",
+    
+    "ls_command": " ",
+    "ls_description": " ",
+
+    "cat_command": " ",
+    "cat_description": " ",
+
+    "hostname_command": " ",
+    "hostname_description": " ",
+    
+    "whoami_command": " ",
+    "whoami_description": " "
 }

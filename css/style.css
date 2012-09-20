@@ -12,14 +12,15 @@ body {
 }
 
 .link:hover {
-    color: green;
+    color: darkorange ;
 }
 
 #cursor {
-    text-decoration: blink;
     background-color: white;
+    color: black;
 }
 
 #cursor.blink {
-    visibility: hidden;
+    background-color: black;
+    color: white;
 }
