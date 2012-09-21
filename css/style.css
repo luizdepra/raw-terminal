@@ -6,13 +6,13 @@ body {
 }
 
 .link {
-    color: orange;
+    color: lime;
     text-decoration: none;
-    font-weight: bold;
 }
 
 .link:hover {
-    color: darkorange ;
+    color: lightgreen;
+    text-decoration: underline;
 }
 
 #cursor {

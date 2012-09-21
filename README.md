@@ -7,4 +7,15 @@ Commands
 ========
 
 * **help**: list all disponible commands.
-* **whois**: show about me
+* **ls**: list all pages.
+* **cat**: show/open pages.
+* **hostname**: show site address.
+* **clear**: clear screen.
+* **date**: display current date.
+* **echo**: display a text.
+* **history**: print command history.
+
+Others
+======
+* **An easter egg**: secret!
+* **File output**: maybe!?

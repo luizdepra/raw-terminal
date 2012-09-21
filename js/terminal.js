@@ -58,7 +58,7 @@ var Command = {
         },
         
         exec: function() { 
-            Terminal.print('Hostname me!');
+            Terminal.print(Locale.hostname_msg);
             Terminal.print('&nbsp;');
         }
     },
