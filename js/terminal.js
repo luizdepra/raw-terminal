@@ -1,6 +1,9 @@
 // --- Locale ---
 var Locale = null;
 
+// --- Fake FileSystem ---
+var FileSystem = null;
+
 // --- Avaliable Commands ---
 var Command = {
     help: { // Show hekp and commands
@@ -14,6 +17,21 @@ var Command = {
         
         exec: function() { 
             Terminal.print('Help me!');
+            Terminal.print('&nbsp;');
+        }
+    },
+    
+    cd: { // Change folder
+        command: function() {
+            return Locale.cd_command;
+        },
+        
+        description: function() {
+            return Locale.cd_description;
+        },
+        
+        exec: function() { 
+            Terminal.print('Cd me!');
             Terminal.print('&nbsp;');
         }
     },
@@ -63,17 +81,77 @@ var Command = {
         }
     },
     
-    whoami: { // Show user IP
+    clear: { // Clear Screen
         command: function() {
-            return Locale.whoami_command;
+            return Locale.clear_command;
         },
         
         description: function() {
-            return Locale.whoami_description;
+            return Locale.clear_description;
         },
         
         exec: function() { 
-            Terminal.print('Whoami me!');
+            Terminal.print('Clear me!');
+            Terminal.print('&nbsp;');
+        }
+    },
+    
+    date: { // Show date
+        command: function() {
+            return Locale.date_command;
+        },
+        
+        description: function() {
+            return Locale.date_description;
+        },
+        
+        exec: function() { 
+            Terminal.print('Date me!');
+            Terminal.print('&nbsp;');
+        }
+    },
+    
+    echo: { // Show message
+        command: function() {
+            return Locale.echo_command;
+        },
+        
+        description: function() {
+            return Locale.echo_description;
+        },
+        
+        exec: function() { 
+            Terminal.print('Echo me!');
+            Terminal.print('&nbsp;');
+        }
+    },
+    
+    history: { // Show command history
+        command: function() {
+            return Locale.history_command;
+        },
+        
+        description: function() {
+            return Locale.history_description;
+        },
+        
+        exec: function() { 
+            Terminal.print('History me!');
+            Terminal.print('&nbsp;');
+        }
+    },
+    
+    lang: { // Chnage language
+        command: function() {
+            return Locale.lang_command;
+        },
+        
+        description: function() {
+            return Locale.lang_description;
+        },
+        
+        exec: function() { 
+            Terminal.print('Lang me!');
             Terminal.print('&nbsp;');
         }
     }
@@ -92,6 +170,7 @@ var Terminal = {
     init: function(container, locale) {
         this.container = container;
         
+        this.loadFileSystem();
         this.loadLocale(locale);
         
         window.setInterval(function() {
@@ -99,11 +178,25 @@ var Terminal = {
         }, 500);
     },
     
+    // Load filesystem
+    loadFileSystem: function() {
+        $.getJSON('js/fs/filesystem.json', function(data) {
+            FileSystem = data;
+            
+            if (Locale) {
+                Terminal.welcome();
+            }
+        });
+    },
+    
     // load locale json
     loadLocale: function(locale) {
         $.getJSON('js/locale/' + locale + '.json', function(data) {
             Locale = data;
-            Terminal.welcome();
+            
+            if (FileSystem) {
+                Terminal.welcome();
+            }
         });
     },
     

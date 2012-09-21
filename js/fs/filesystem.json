@@ -1,0 +1,93 @@
+[
+    {
+        "name": "blog",
+        "type": "link",
+        "content": [
+            "http://blog.luizdepra.com.br"
+        ]
+    },
+    
+    {
+        "name": "contact.txt",
+        "type": "text",
+        "content": [
+            "Locale do email aqui!"
+        ]
+    },
+    
+    {
+        "name": "friends",
+        "type": "folder",
+        "content": [
+            {
+                "name": "Luan Santos",
+                "type": "link",
+                "content": [
+                    "http://luansantos.com/"
+                ]
+            },
+            
+            {
+                "name": "Rodrigo Delduca",
+                "type": "link",
+                "content": [
+                    "http://nullonerror.appspot.com/"
+                ]
+            },
+            
+            {
+                "name": "Vinícius Godoy",
+                "type": "link",
+                "content": [
+                    "http://www.pontov.com.br/site/"
+                ]
+            }
+        ]
+    },
+    
+    {
+        "name": "info.txt",
+        "type": "text",
+        "content": [
+            "Locale do info aqui!"
+        ]
+    },
+    
+    {
+        "name": "projects",
+        "type": "text",
+        "content": [
+        
+        ]
+    },
+    
+    {
+        "name": "social",
+        "type": "text",
+        "content": [
+            {
+                "name": "facebook",
+                "type": "link",
+                "content": [
+                    "http://facebook.com/"
+                ]
+            },
+            
+            {
+                "name": "twitter",
+                "type": "link",
+                "content": [
+                    "http://twitter.com/"
+                ]
+            },
+            
+            {
+                "name": "github",
+                "type": "link",
+                "content": [
+                    "http://github.com/"
+                ]
+            }
+        ]
+    }
+]

@@ -14,6 +14,7 @@ Commands
 * **date**: display current date.
 * **echo**: display a text.
 * **history**: print command history.
+* **lang**: change language.
 
 Others
 ======

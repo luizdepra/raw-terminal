@@ -1,11 +1,14 @@
 {
-    "welcome_msg": "Olá! Bem-vindo a <a class=\"link\" href=\"http://luizdepra.com.br\">luizdepra.com.br</a>.",
+    "welcome_msg": "Olá! Bem-vindo a <a class=\"link\" href=\"http://luizdepra.com.br/\">http://luizdepra.com.br/</a>.",
     "welcome_help_msg": "Digite 'help' para obter a lista de todos os comandos disponíveis.",
     
     "help_command": "help",
     "help_description": "Lista todos os comandos disponíveis.",
     
-    "ls_command": "ls [-l]",
+    "cd_command": "cd <caminho>",
+    "cd_description": "Acessa o <caminho>.",
+    
+    "ls_command": "ls [-l] [caminho]",
     "ls_description": "Lista todas as páginas do site.",
 
     "cat_command": "cat <página>",
@@ -14,8 +17,22 @@
     "hostname_command": "hostname",
     "hostname_description": "Mostra o endereço do site.",
     
-    "whoami_command": "whoami",
-    "whoami_description": "Mstra o IP do usuário.",
+    "clear_command": "clear",
+    "clear_description": "Limpa a tela.",
     
-    "hostname_msg": "<a class=\"link\" href=\"http://luizdepra.com.br\">luizdepra.com.br</a>"
+    "date_command": "date",
+    "date_description": "Mostra a data atual.",
+    
+    "echo_command": "echo <mensagem>",
+    "echo_description": "Mostra a <mensagem>.",
+    
+    "history_command": "history",
+    "history_description": "Mostra o histórico de comandos.",
+    
+    "lang_command": "lang <en|pt-br>",
+    "lang_description": "Troca a linguagem para inglês ou português.",
+    
+    "hostname_msg": [
+        "<a class=\"link\" href=\"http://luizdepra.com.br/\">http://luizdepra.com.br/</a>"
+    ]
 }
